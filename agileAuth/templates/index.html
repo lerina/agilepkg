@@ -1,0 +1,26 @@
+{% extends "site_base.html" %}
+{% block title %}<title>{{ title }}</title>{% endblock %}
+{% block content %}
+<div class="container">
+<div class="row">
+    <div class="col-lg-2 col-lg-offset-1">
+					    <h2>{{ title }}</h2>
+    </div><!-- /col-lg-2 col-lg-offset-1 -->
+	<div class="col-lg-6">
+	<h2>This is the base template with login/logout</h2>
+        <ul>
+            <li> <a href="#">basic structure </a> </li>
+            <li> <a href="#">bootstrap3 ready</a> </li>
+            <li> <a href="#">sample html/css</a> </li>
+            <li> <a href="#">System ready to host agilepkg apps</a> </li>
+        </ul>
+    </div> <!-- /col-lg-6 -->
+    <div class="col-lg-3">
+        <h2>ABOUT</h2>
+        <p>Demo for different agilepkg components</p>
+    </div> <!-- /col-lg-3 -->
+</div> <!-- /row -->
+</div> <!-- /container -->
+{% endblock content %}
+
+{% block extra_js %}{% endblock %}

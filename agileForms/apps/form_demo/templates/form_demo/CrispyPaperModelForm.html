@@ -1,0 +1,13 @@
+{% extends "site_base.html"%}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-3"><a href="{% url 'formDemoIndex' %}">back to Form demo index</a> </div>
+    <div class="col-md-6 form-group  well">
+       {% crispy form %}
+    </div>
+    <h3>{{ msg }}</h3>
+    <div class="col-md-3"></div>
+</div>
+{% endblock content %}

@@ -1,0 +1,34 @@
+
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    {% if user.is_authenticated %}
+        <i class="glyphicon glyphicon-log-out"></i> {{ user.username }}
+    {% else %}
+        <i class="glyphicon glyphicon-log-in"></i>
+    {% endif %}
+    <span class="caret"></span>
+</a>
+<ul class="dropdown-menu" role="menu">
+    {% if user.is_authenticated %}
+        <li class="menu-item"><a href="/auth/logout/" title="Logout">logout</a></li>
+    {% else %}
+        <li class="menu-item"><a href="/auth/login/"  class="btn btn-custom" title="Login">login Form</a></li>
+        {#<li class="menu-item"><a href="#myModal" role="button" class="btn btn-custom" data-toggle="modal">login modal Form</a></li>#}
+    {% endif %}
+</ul>
+
+<script>
+$(document).ready(function() {
+
+    // For the Second level Dropdown menu, highlight the parent
+    $( ".dropdown-menu" )
+    .mouseenter(function() {
+        $(this).parent('li').addClass('active');
+    })
+    .mouseleave(function() {
+        $(this).parent('li').removeClass('active');
+        //toggle hide
+    });
+
+});
+</script>
+

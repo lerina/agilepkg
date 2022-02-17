@@ -1,0 +1,45 @@
+{% extends "site_base.html" %}
+{% block title %}<title>{{ title }}</title>{% endblock %}
+{% block content %}
+<div class="container">
+<div class="row">
+    <div class="col-md-2 col-lg-offset-1">
+					    <h2>AJAX &#64; Work</h2>
+    </div><!-- /col-lg-2 col-lg-offset-1 -->
+	<div class="col-md-6">
+        <form class="form-signin" method="POST" action="/echo/ajax">{% csrf_token %}
+            <h2 class="form-signin-heading">Please Enter text</h2>
+            <input id="ajaxTextbox" class="form-control" placeholder="... here" required autofocus name="text" type="text" />
+            <input class="btn btn-lg btn-primary btn-block"  id="ajaxButton" type="submit" value="Submit" />
+        </form>
+    </div> <!-- /col-lg-6 -->
+    <div class="col-md-3">
+        <h2>Response Area</h2>
+        <p id="ajaxP">Nothing to see here.</p>
+    </div> <!-- /col-lg-3 -->
+</div> <!-- /row -->
+</div> <!-- /container -->
+{% endblock content %}
+
+{% block extra_js %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('form').submit(function(e) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/echo/ajax',
+                    data: $(this).serialize(),
+                    dataType: "json", 
+                    csrfmiddlewaretoken:'{{ csrf_token }}',
+                    success: function(data) {
+                        console.log("success!!!")  // sanity check
+                        $('#ajaxP').css({"color":"purple"});
+                        $('#ajaxP').html(data.theText);
+                        $('#ajaxTextbox').val("");
+                    }
+                });
+                e.preventDefault();
+            });
+        });
+    </script>
+{% endblock %}
